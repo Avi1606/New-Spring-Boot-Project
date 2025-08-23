@@ -11,4 +11,6 @@ public interface StudentService {
     List<StudentDto> getStudentData();
 
     StudentDto createStudent(StudentAddDto studentAddDto);
+
+    Void deleteStudent(Long id);
 }

@@ -21,7 +21,7 @@ public class StudentController {
     private final StudentService studentService;
 
     @GetMapping
-    public ResponseEntity<List<StudentDto>> getStudentData2(){
+    public ResponseEntity<List<StudentDto>> getStudentData2() {
         return ResponseEntity.status(HttpStatus.OK).body(studentService.getStudentData());
     }
 
@@ -37,10 +37,13 @@ public class StudentController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<StudentDto> updateStudent(@PathVariable Long id ,@RequestBody StudentAddDto studentAddDto) {
-        return ResponseEntity.status(HttpStatus.OK).body(studentService.patchStudent(id ,studentAddDto));
+    public ResponseEntity<StudentDto> updateStudent(@PathVariable Long id, @RequestBody StudentAddDto studentAddDto) {
+        return ResponseEntity.status(HttpStatus.OK).body(studentService.patchStudent(id, studentAddDto));
     }
 
-
+    @PutMapping("/{id}")
+    public ResponseEntity<StudentDto> replaceStudent(@PathVariable Long id, @RequestBody StudentAddDto studentAddDto) {
+        return ResponseEntity.status(HttpStatus.OK).body(studentService.putStudent(id ,studentAddDto));
+    }
 }
 

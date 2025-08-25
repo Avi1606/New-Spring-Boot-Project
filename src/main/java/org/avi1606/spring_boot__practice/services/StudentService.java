@@ -16,4 +16,6 @@ public interface StudentService {
 
     StudentDto patchStudent(Long id, StudentAddDto studentAddDto);
 
+    StudentDto putStudent(Long id, StudentAddDto studentAddDto);
+
 }

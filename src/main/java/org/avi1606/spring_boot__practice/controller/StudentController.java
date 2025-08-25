@@ -1,5 +1,6 @@
 package org.avi1606.spring_boot__practice.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.avi1606.spring_boot__practice.dto.StudentAddDto;
 import org.avi1606.spring_boot__practice.dto.StudentDto;
@@ -25,14 +26,21 @@ public class StudentController {
     }
 
     @PostMapping
-    public ResponseEntity<StudentDto> addStudent(@RequestBody StudentAddDto studentAddDto) {
+    public ResponseEntity<StudentDto> addStudent(@RequestBody @Valid StudentAddDto studentAddDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(studentService.createStudent(studentAddDto));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(studentService.deleteStudent(id));
+        studentService.deleteStudent(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<StudentDto> updateStudent(@PathVariable Long id ,@RequestBody StudentAddDto studentAddDto) {
+        return ResponseEntity.status(HttpStatus.OK).body(studentService.patchStudent(id ,studentAddDto));
+    }
+
 
 }
 
